@@ -20,7 +20,7 @@ Kepenk does **not** claim to be a sandbox. It is an approval and policy layer th
 
 ## Install the current release
 
-Kepenk can be installed directly from the signed GitHub release tag; PyPI is not required.
+Kepenk can be installed directly from the verified GitHub release tag; PyPI is not required.
 
 ```bash
 python -m venv .venv
@@ -113,7 +113,6 @@ kepenk init [--force]
 kepenk validate [--json]
 kepenk check --action TYPE [--command TEXT] [--path PATH] [--host HOST] [--json]
 kepenk run [--yes] -- COMMAND [ARG ...]
-kepenk approve --token TOKEN [--json]
 kepenk verify-audit [--audit PATH]
 ```
 
@@ -136,7 +135,7 @@ Exit codes:
 
 ## Integrations
 
-- [Codex integration](docs/integrations/codex.md): non-interactive `check`, `run`, and explicit `approve` workflow with a sample policy and `AGENTS.md`.
+- [Codex integration](docs/integrations/codex.md): non-interactive `check` and `run` workflows with a sample policy and `AGENTS.md`.
 - [GitHub Action](docs/integrations/github-action.md): validate policies and check explicit actions with job summaries and reusable outputs.
 - [PowerShell examples](docs/powershell.md): Windows-specific quoting, command matching, and policy limitations.
 
