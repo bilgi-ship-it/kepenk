@@ -2,6 +2,17 @@
 
 All notable changes will be documented here.
 
+## [0.2.1] - 2026-07-31
+
+### Fixed
+
+- the composite GitHub Action no longer enables consumer-repository pip caching, so it can run in repositories without `requirements.txt`, `pyproject.toml`, or other Python dependency files
+
+### Compatibility
+
+- GitHub Action inputs, outputs, decision exit codes, and the pinned `actions/setup-python` revision remain unchanged from v0.2.0
+- the Action still installs Kepenk from its own checked-out Action directory
+
 ## [0.2.0] - 2026-07-31
 
 ### Added
