@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import io
 import json
 from pathlib import Path
@@ -7,7 +8,14 @@ from urllib.error import HTTPError, URLError
 
 import pytest
 
-from scripts.check_pypi_state import inspect_project, project_identity
+SCRIPT_PATH = Path(__file__).resolve().parents[1] / "scripts" / "check_pypi_state.py"
+SPEC = importlib.util.spec_from_file_location("kepenk_check_pypi_state", SCRIPT_PATH)
+assert SPEC is not None and SPEC.loader is not None
+MODULE = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(MODULE)
+
+inspect_project = MODULE.inspect_project
+project_identity = MODULE.project_identity
 
 
 class FakeResponse(io.BytesIO):
