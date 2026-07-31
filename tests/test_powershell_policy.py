@@ -4,7 +4,6 @@ from kepenk.engine import PolicyEngine
 from kepenk.models import Action
 from kepenk.policy import load_policy
 
-
 POLICY_PATH = (
     Path(__file__).resolve().parents[1]
     / "examples"
