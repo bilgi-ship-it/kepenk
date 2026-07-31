@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bilgi-ship-it/kepenk/raw/main/schemas/kepenk-policy.schema.json",
+  "title": "Kepenk Policy",
+  "description": "Schema for Kepenk policy files.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "default", "rules"],
+  "properties": {
+    "$schema": {"type": "string", "format": "uri-reference"},
+    "version": {"const": 1},
+    "default": {"$ref": "#/$defs/effect"},
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {"type": "string", "minLength": 1}
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/rule"},
+      "default": []
+    }
+  },
+  "$defs": {
+    "effect": {
+      "type": "string",
+      "enum": ["allow", "approval", "deny"]
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "effect", "match"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "effect": {"$ref": "#/$defs/effect"},
+        "reason": {"type": "string", "minLength": 1},
+        "match": {"$ref": "#/$defs/match"}
+      }
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": ["shell", "filesystem", "network", "git", "generic"]
+        },
+        "command_regex": {"type": "string", "minLength": 1},
+        "path_regex": {"type": "string", "minLength": 1},
+        "host_regex": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
