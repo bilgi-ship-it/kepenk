@@ -36,6 +36,7 @@ STABLE_DECISION_KEYS = {"effect", "reason", "rule_id", "action"}
 
 
 def _write_policy(tmp_path: Path, *, audit_path: Path | None = None) -> Path:
+    tmp_path.mkdir(parents=True, exist_ok=True)
     selected_audit = audit_path or (tmp_path / "audit.jsonl")
     policy_path = tmp_path / "kepenk.yaml"
     policy_path.write_text(
